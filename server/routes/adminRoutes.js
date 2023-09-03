@@ -129,7 +129,9 @@ res.cookie('token', token, { httpOnly: true });
 
 // dashboard
 
-router.get('/dashboard',authMiddleware,(req,res)=>{
- res.render('admin/dashboard',{currentRoute:'/dashboard'});
+router.get('/dashboard',authMiddleware,async (req,res)=>{
+const posts = await Post.find();
+
+ res.render('admin/dashboard',{data:posts,currentRoute:'/dashboard'});
 })
 module.exports = router;
