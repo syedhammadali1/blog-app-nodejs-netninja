@@ -14,7 +14,20 @@ const PORT = 5000 || process.env.PORT;
 connectDB();
 
 app.use(express.urlencoded({ extended: true }));
+// express.urlencoded() is a built-in middleware provided by Express.js for parsing URL-encoded
+//  data in incoming requests. This middleware is typically used to parse data submitted 
+// through HTML forms with the "application/x-www-form-urlencoded" content type.
+
+// { extended: true } is an options object passed to express.urlencoded(). 
+// When extended is set to true, it allows for parsing nested objects and arrays in the 
+// URL-encoded data. When set to false, only simple key-value pairs are parsed
+
 app.use(express.json());
+
+// express.json() is a built-in middleware provided by Express.js for parsing JSON data
+//  in incoming requests. It automatically parses the request body if the 
+// Content-Type header of the request indicates JSON data (e.g., "application/json").
+
 app.use(cookieParser());
 
 
@@ -29,6 +42,9 @@ app.use('/',require('./server/routes/adminRoutes'));
 // require('./server/routes/main')
 
 app.locals.isActiveRoute = isActiveRoute; 
+// In Express.js, the app.locals object is used to store data that is accessible
+// across all routes and views in your application.
+
 
 app.listen(PORT, ()=> {
     console.log(`App listening on port ${PORT}`);
